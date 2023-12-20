@@ -21,16 +21,25 @@ const EditJenis = (jenis: Jenis) => {
     e.preventDefault();
     setIsMutating(true);
     let endpoint = `${API_URL}/jenis/${jenis.id}`;
-    const data = { name: name, kategori_id: kategori_id };
+    const data = {
+      name: name,
+      kategori_id: kategori_id,
+    };
     await axios.patch(endpoint, data);
-    setName("");
-    setIsMutating(false);
-    router.refresh();
-    setModal(false);
+    try {
+      await axios.patch(endpoint, data);
+      setIsMutating(false);
+      router.refresh();
+      setModal(false);
+    } catch (error) {
+      // Tambahkan penanganan pesan kesalahan jika diperlukan
+      setIsMutating(false);
+      console.error("Error updating data:", error);
+    }
   };
   return (
     <div>
-      <button className="btn" onClick={handleChange}>
+      <button className="btn btn-info btn-sm" onClick={handleChange}>
         Edit
       </button>
       <input

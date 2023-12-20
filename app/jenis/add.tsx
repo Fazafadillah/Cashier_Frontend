@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 const API_URL = "http://127.0.0.1:8000/api";
 const AddJenis = () => {
   const [modal, setModal] = useState(false);
-  const [kategori_id, setKategori_id] = useState("");
   const [name, setName] = useState("");
+  const [kategori_id, setKategori_id] = useState("");
   const [isMutating, setIsMutating] = useState(false);
   const router = useRouter();
   const handleChange = () => setModal(!modal);
@@ -16,7 +16,7 @@ const AddJenis = () => {
     e.preventDefault();
     setIsMutating(true);
     let endpoint = `${API_URL}/jenis`;
-    const data = { kategori_id: kategori_id, name: name };
+    const data = { name: name, kategori_id: kategori_id };
     await axios.post(endpoint, data);
     setName("");
     setIsMutating(false);
@@ -25,7 +25,7 @@ const AddJenis = () => {
   };
   return (
     <div>
-      <button className="btn" onClick={handleChange}>
+      <button className="btn btn-primary" onClick={handleChange}>
         Add New
       </button>
       <input

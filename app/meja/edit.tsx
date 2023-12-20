@@ -45,8 +45,8 @@ const EditMeja = (meja: Meja) => {
     } catch (error) {
       // Tambahkan penanganan pesan kesalahan jika diperlukan
       setIsMutating(false);
-      console.error('Error updating data:', error);
-    }
+      console.error("Error updating data:", error);
+    }
   };
   return (
     <div>

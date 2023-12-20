@@ -50,7 +50,10 @@ const DeleteMeja = (meja: Meja) => {
 
       <div className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg"> Yakin Mau Hapus Nomor Meja {meja.nomor_meja}?</h3>
+          <h3 className="font-bold text-lg">
+            {" "}
+            Yakin Mau Hapus Nomor Meja {meja.nomor_meja}?
+          </h3>
           <div className="modal-action">
             <button type="button" className="btn" onClick={handleChange}>
               Close

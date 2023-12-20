@@ -32,7 +32,7 @@ const AddPelanggan = () => {
   };
   return (
     <div>
-      <button className="btn" onClick={handleChange}>
+      <button className="btn btn-primary" onClick={handleChange}>
         Add New
       </button>
       <input

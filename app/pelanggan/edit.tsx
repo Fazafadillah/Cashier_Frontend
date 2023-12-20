@@ -46,7 +46,7 @@ const EditPelanggan = (pelanggan: Pelanggan) => {
   };
   return (
     <div>
-      <button className="btn" onClick={handleChange}>
+      <button className="btn btn-info btn-sm" onClick={handleChange}>
         Edit
       </button>
       <input

@@ -20,15 +20,20 @@ const EditCategory = (category: Category) => {
     setIsMutating(true);
     let endpoint = `${API_URL}/category/${category.id}`;
     const data = { name: name };
-    await axios.patch(endpoint, data);
-    setName("");
-    setIsMutating(false);
-    router.refresh();
-    setModal(false);
+    try {
+      await axios.patch(endpoint, data);
+      setIsMutating(false);
+      router.refresh();
+      setModal(false);
+    } catch (error) {
+      // Tambahkan penanganan pesan kesalahan jika diperlukan
+      setIsMutating(false);
+      console.error("Error updating data:", error);
+    }
   };
   return (
     <div>
-      <button className="btn" onClick={handleChange}>
+      <button className="btn btn-info btn-sm" onClick={handleChange}>
         Edit
       </button>
       <input

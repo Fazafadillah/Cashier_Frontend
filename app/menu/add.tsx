@@ -7,9 +7,11 @@ import { useRouter } from "next/navigation";
 const API_URL = "http://127.0.0.1:8000/api";
 const AddMenu = () => {
   const [modal, setModal] = useState(false);
+  const [jenis_id, setJenis_id] = useState("");
+  const [name, setName] = useState("");
   const [harga, setHarga] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
-  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const [isMutating, setIsMutating] = useState(false);
   const router = useRouter();
   const handleChange = () => setModal(!modal);
@@ -17,16 +19,26 @@ const AddMenu = () => {
     e.preventDefault();
     setIsMutating(true);
     let endpoint = `${API_URL}/menu`;
-    const data = { harga: harga, name: name, deskripsi: deskripsi };
+    const data = {
+      jenis_id: jenis_id,
+      name: name,
+      harga: harga,
+      deskripsi: deskripsi,
+      image: image,
+    };
     await axios.post(endpoint, data);
+    setJenis_id("");
     setName("");
+    setHarga("");
+    setDeskripsi("");
+    setImage("");
     setIsMutating(false);
     router.refresh();
     setModal(false);
   };
   return (
     <div>
-      <button className="btn" onClick={handleChange}>
+      <button className="btn btn-primary" onClick={handleChange}>
         Add New
       </button>
       <input
@@ -40,6 +52,14 @@ const AddMenu = () => {
           <h3 className="font-bold text-lg">Add New Menu</h3>
           <form onSubmit={handleSubmit}>
             <div className="form-control">
+              <label className="label font-bold">jenis</label>
+              <input
+                type="text"
+                value={jenis_id}
+                onChange={(e) => setJenis_id(e.target.value)}
+                className="input w-full input-bordered"
+                placeholder="jenis id"
+              />
               <label className="label font-bold">Nama</label>
               <input
                 type="text"
@@ -61,6 +81,14 @@ const AddMenu = () => {
                 type="text"
                 value={deskripsi}
                 onChange={(e) => setDeskripsi(e.target.value)}
+                className="input w-full input-bordered"
+                placeholder="deskripsi"
+              />
+              <label className="label font-bold">Deskripsi</label>
+              <input
+                type="text"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
                 className="input w-full input-bordered"
                 placeholder="deskripsi"
               />

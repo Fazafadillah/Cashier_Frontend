@@ -30,7 +30,7 @@ const DeleteJenis = (jenis: Jenis) => {
   };
   return (
     <div>
-      <button className="btn" onClick={handleChange}>
+      <button className="btn btn-error btn-sm" onClick={handleChange}>
         Delete
       </button>
       <input
